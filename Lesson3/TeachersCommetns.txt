@@ -1,0 +1,24 @@
+Well done!
+
+2
+a) -0.25
+You lost condition for Cost is null and mistyped the result for ELSE.
+Correct answer:
+SELECT Name,
+		CASE WHEN StandardCost=0 OR StandardCost IS NULL THEN 'Not for sale'
+			WHEN StandardCost>0 AND StandardCost<100 THEN '<$100'
+			WHEN StandardCost >=100 AND StandardCost<500 THEN '<$500'
+			ELSE '>$500'
+		END AS PriceRange
+FROM Production.Product
+
+3
+c) -1
+You don't need a subquery to have a filter by aggregated function.
+Correct answer:
+SELECT p.Name, COUNT(sp.SpecialOfferID) as cnt
+FROM Production.Product p JOIN sales.SpecialOfferProduct sp ON p.ProductID=sp.ProductID
+GROUP BY p.Name
+HAVING COUNT(sp.SpecialOfferID) >1
+
+Mark: 9
