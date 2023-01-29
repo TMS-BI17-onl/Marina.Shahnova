@@ -1,0 +1,8 @@
+Well done!
+
+4
+a) -0.25
+Probably, you used russian "m".
+Also, the task was not "not equal", it was "not including".
+
+Mark: 10
