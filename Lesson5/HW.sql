@@ -5,20 +5,21 @@ CREATE TABLE Patients
     ID		        INT IDENTITY(1,1), 
     FirstName		NVARCHAR(100), 
     LastName		NVARCHAR(100), 
-	SSN				VARCHAR(10) UNIQUE,
+	SSN				uniqueidentifier NOT NULL DEFAULT newid(),
 	Email           AS CONCAT(UPPER(LEFT(FirstName,1)),LOWER(LEFT(LastName,3)),'@gmail.com'),
 	Temp		    DECIMAL(5,2),
 	CreatedDate     DATE
 );
 
 --TASK 7
-INSERT INTO Patients (FirstName, LastName, SSN,Temp, CreatedDate)
+INSERT INTO Patients (FirstName, LastName,Temp, CreatedDate)
 VALUES
-    ('Ivan','Adams','adaiva',37.2, '2022-04-05'),
-	('Lesha','Dams','DaLes', 36.2, '2022-06-03'),
-	('Petya','Ivanov',NULL , 36.6, '2021-04-05'),
-	('Igar','Arilov','ArIga', 37.0, '2020-02-25'),
-	('Marina','Larina','Lmar',39.2, '2021-04-05')
+    ('Ivan','Adams',37.2, '2022-04-05'),
+	('Lesha','Dams', 36.2, '2022-06-03'),
+	('Petya','Ivanov', 36.6, '2021-04-05'),
+	('Igar','Arilov', 37.0, '2020-02-25'),
+	('Marina','Larina',39.2, '2021-04-05')
+
 
 --TASK 8
 ALTER TABLE Patients 
