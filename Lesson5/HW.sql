@@ -7,7 +7,7 @@ CREATE TABLE Patients
     LastName		NVARCHAR(100), 
 	SSN				uniqueidentifier NOT NULL DEFAULT newid(),
 	Email           AS CONCAT(UPPER(LEFT(FirstName,1)),LOWER(LEFT(LastName,3)),'@gmail.com'),
-	Temp		    DECIMAL(5,2),
+	Temp		    DECIMAL(5,1),
 	CreatedDate     DATE
 );
 
@@ -39,13 +39,11 @@ ADD TempType AS CASE WHEN Temp<37 THEN '< 37°C'
  FROM vPatients
 
  --TASK 10
-CREATE FUNCTION TempF(@TempC AS DECIMAL(5,2)) 
-RETURNS DECIMAL(5,2)
+CREATE FUNCTION TempF(@TempC AS DECIMAL(5,1)) 
+RETURNS DECIMAL(5,1)
 AS 
 BEGIN 
-DECLARE @TTemp DECIMAL(5,2);
-SET @TTemp=@TempC*9/5+32
-RETURN @TTemp
+RETURN @TempC*9/5+32;
 END
 
 SELECT * , dbo.TempF(Temp)
