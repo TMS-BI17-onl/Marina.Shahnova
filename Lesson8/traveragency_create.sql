@@ -6,11 +6,11 @@ USE TravelAgency;
 DROP TABLE IF EXISTS DimClients;
 CREATE TABLE DimClients
 (
-	ClientId		INT,
+	ClientId		INT IDENTITY(1,1),
 	FirstName		NVARCHAR(50) NOT NULL,
 	LastName		NVARCHAR(50) NOT NULL,
 	TypeClient		NVARCHAR(15),
-	Passport		NVARCHAR(50) NOT NULL UNIQUE,
+	Passport		NVARCHAR(25) NOT NULL UNIQUE,
 	PhoneNumber		VARCHAR(20) ,
 	Adress			NVARCHAR(150),
 	Birthdate		Date,
@@ -21,11 +21,11 @@ CREATE TABLE DimClients
 DROP TABLE IF EXISTS DimManagers;
 CREATE TABLE DimManagers
 (
-	ManagerId		INT,
+	ManagerId		INT IDENTITY(1,1),
 	FirstName		NVARCHAR(50) NOT NULL,
 	LastName		NVARCHAR(50) NOT NULL,
 	Position		NVARCHAR(50),
-	Passport		NVARCHAR(50) NOT NULL UNIQUE,
+	Passport		NVARCHAR(25) NOT NULL UNIQUE,
 	PhoneNumber		VARCHAR(20) ,
 	Email			NVARCHAR(25),
 	Territory		NVARCHAR(50),
@@ -36,7 +36,7 @@ CREATE TABLE DimManagers
 DROP TABLE IF EXISTS DimHotels;
 CREATE TABLE DimHotels
 (
-	HotelId		    INT,
+	HotelId		    INT IDENTITY(1,1),
 	HotelName		NVARCHAR(50) NOT NULL,
 	HotelType		NVARCHAR(15),
 	Country			NVARCHAR(25) NOT NULL,
@@ -55,7 +55,7 @@ ADD CONSTRAINT DF_Price_DimHotels DEFAULT ((0)) FOR Price;
 DROP TABLE IF EXISTS DimAirFlight;
 CREATE TABLE DimAirFlight
 (
-	AviaId		    INT,
+	AviaId		    INT IDENTITY(1,1),
 	Departure		DATETIME NOT NULL,
 	CityDeparture	NVARCHAR(25) NOT NULL,
 	Arrival			DATETIME NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE DimAirFlight
 DROP TABLE IF EXISTS FctSales;
 CREATE TABLE FctSales
 (
-   SalesId		    INT,
+   SalesId		    INT IDENTITY(1,1),
    ClientId		    INT,
    ManagerId	    INT,
    HotelId		    INT,
@@ -78,7 +78,7 @@ CREATE TABLE FctSales
    EndDate			DATE NOT NULL,
    Discount			INT,
    Price			MONEY,
-   CONSTRAINT PK_SalesId_FctSales PRIMARY KEY (HotelId),
+   CONSTRAINT PK_SalesId_FctSales PRIMARY KEY (SalesId),
    CONSTRAINT CK_Price_FctSales CHECK(Price>=0),
    CONSTRAINT CK_Discount_FctSales CHECK(Discount>=0),
    CONSTRAINT FK_ClientId_FctSales  FOREIGN KEY (ClientId) REFERENCES DimClients(ClientId) 
