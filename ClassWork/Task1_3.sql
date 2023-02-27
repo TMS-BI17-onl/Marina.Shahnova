@@ -1,5 +1,5 @@
 
-3) Вывести самый дорогой продукт для каждого цвета из [Production].[Product]
+3) Г‚Г»ГўГҐГ±ГІГЁ Г±Г Г¬Г»Г© Г¤Г®Г°Г®ГЈГ®Г© ГЇГ°Г®Г¤ГіГЄГІ Г¤Г«Гї ГЄГ Г¦Г¤Г®ГЈГ® Г¶ГўГҐГІГ  ГЁГ§ [Production].[Product]
 --TASK 1
 SELECT pp.Title,pp.FirstName,pp.LastName,pp.MiddleName,pph.PhoneNumber
 FROM Person.PersonPhone   pph JOIN Person.Person pp ON  pph.BusinessEntityID=pp.BusinessEntityID
@@ -25,3 +25,5 @@ SELECT *
 FROM (SELECT COLOR,NAME, StandardCost, MAX(StandardCost) OVER (PARTITION BY COLOR) AS MAX_COST
 FROM Production.Product) P
 WHERE P.StandardCost=P.MAX_COST
+
+Mark: 10
