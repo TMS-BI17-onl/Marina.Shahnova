@@ -1,0 +1,1574 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/5/2023 2:02:10 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-4OVPEN8"
+  DTS:CreatorName="DESKTOP-4OVPEN8\user"
+  DTS:DTSID="{5848689B-A394-4B57-856D-FF6C64491550}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.121"
+  DTS:LocaleID="1049"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{04DD67CD-7626-48CC-A96D-2835D12C41EF}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{9A0E140C-D84C-4B60-BD44-12566CE2380A}"
+      DTS:ObjectName="DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=DESKTOP-4OVPEN8\SQLEXPRESS;Initial Catalog=TravelAgency;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Задача потока данных"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Задача потока данных"
+      DTS:DTSID="{BD68D569-537C-48D4-9174-794E956D3EAD}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Задача потока данных"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Источник &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;7"
+              description="Источник &quot;OLE DB&quot;"
+              name="Источник &quot;OLE DB&quot;"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT TOP 10 C.Passport as C_Passport, M.Passport as M_Passport,A.CityDeparture,A.CityArival,H.HotelName,H.Country,H.City,S.SalesDate,S.StartDate,s.EndDate,s.Discount,s.Price
+FROM FctSales S JOIN DimClients C ON S.ClientId=C.ClientId JOIN DimManagers M ON S.ManagerId=M.ManagerId 
+	JOIN DimHotels H ON S.HotelId=H.HotelId JOIN DimAirFlight A ON S.AviaId=A.AviaId</property>
+                <property
+                  dataType="System.String"
+                  description="Переменная, содержащая команду SQL для выполнения."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Сопоставления между параметрами в команде SQL и переменными."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;]"
+                  name="Выход источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[C_Passport]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[C_Passport]"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[C_Passport]"
+                      name="C_Passport"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[M_Passport]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[M_Passport]"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[M_Passport]"
+                      name="M_Passport"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CityDeparture]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CityDeparture]"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CityDeparture]"
+                      name="CityDeparture"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CityArival]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CityArival]"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CityArival]"
+                      name="CityArival"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[HotelName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[HotelName]"
+                      length="50"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[HotelName]"
+                      name="HotelName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country]"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]"
+                      name="Country"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[City]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[City]"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SalesDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SalesDate]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SalesDate]"
+                      name="SalesDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[StartDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[StartDate]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[StartDate]"
+                      name="StartDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[EndDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[EndDate]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[EndDate]"
+                      name="EndDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Discount]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Discount]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Discount]"
+                      name="Discount"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Price]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Price]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Price]"
+                      name="Price"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[C_Passport]"
+                      dataType="wstr"
+                      length="25"
+                      name="C_Passport" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[M_Passport]"
+                      dataType="wstr"
+                      length="25"
+                      name="M_Passport" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CityDeparture]"
+                      dataType="wstr"
+                      length="25"
+                      name="CityDeparture" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[CityArival]"
+                      dataType="wstr"
+                      length="25"
+                      name="CityArival" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[HotelName]"
+                      dataType="wstr"
+                      length="50"
+                      name="HotelName" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="25"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="25"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[SalesDate]"
+                      dataType="dbDate"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[StartDate]"
+                      dataType="dbDate"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[EndDate]"
+                      dataType="dbDate"
+                      name="EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Discount]"
+                      dataType="i4"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].ExternalColumns[Price]"
+                      dataType="cy"
+                      name="Price" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;]"
+                  isErrorOut="true"
+                  name="Вывод ошибок источника &quot;OLE DB&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[C_Passport]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[C_Passport]"
+                      name="C_Passport" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[M_Passport]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[M_Passport]"
+                      name="M_Passport" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CityDeparture]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CityDeparture]"
+                      name="CityDeparture" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CityArival]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[CityArival]"
+                      name="CityArival" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[HotelName]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[HotelName]"
+                      name="HotelName" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Country]"
+                      name="Country" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[City]"
+                      dataType="wstr"
+                      length="25"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[City]"
+                      name="City" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SalesDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[SalesDate]"
+                      name="SalesDate" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[StartDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[StartDate]"
+                      name="StartDate" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[EndDate]"
+                      dataType="dbDate"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[EndDate]"
+                      name="EndDate" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Discount]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Discount]"
+                      name="Discount" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Price]"
+                      dataType="cy"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[Price]"
+                      name="Price" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Вывод ошибок источника &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+              description="Назначение &quot;OLE DB&quot;"
+              name="Назначение &quot;OLE DB&quot;"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[dbo].[FctSales]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                  errorOrTruncationOperation="Вставить"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Вход назначения &quot;OLE DB&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[SalesDate]"
+                      cachedDataType="dbDate"
+                      cachedName="SalesDate"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[SalesDate]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[SalesDate]" />
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[StartDate]"
+                      cachedDataType="dbDate"
+                      cachedName="StartDate"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[StartDate]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[StartDate]" />
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[EndDate]"
+                      cachedDataType="dbDate"
+                      cachedName="EndDate"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[EndDate]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[EndDate]" />
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Discount]"
+                      cachedDataType="i4"
+                      cachedName="Discount"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Discount]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Discount]" />
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Price]"
+                      cachedDataType="cy"
+                      cachedName="Price"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Price]"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Price]" />
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[HotelId]"
+                      cachedDataType="i4"
+                      cachedName="HotelId"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[HotelId]"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[HotelId]" />
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[AviaId]"
+                      cachedDataType="i4"
+                      cachedName="AviaId"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[AviaId]"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[AviaId]" />
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[ClientId]"
+                      cachedDataType="i4"
+                      cachedName="ClientId"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ClientId]"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[ClientId]" />
+                    <inputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[ManagerId]"
+                      cachedDataType="i4"
+                      cachedName="ManagerId"
+                      externalMetadataColumnId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ManagerId]"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[ManagerId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[SalesId]"
+                      dataType="i4"
+                      name="SalesId" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ClientId]"
+                      dataType="i4"
+                      name="ClientId" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[ManagerId]"
+                      dataType="i4"
+                      name="ManagerId" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[HotelId]"
+                      dataType="i4"
+                      name="HotelId" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[AviaId]"
+                      dataType="i4"
+                      name="AviaId" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[SalesDate]"
+                      dataType="dbDate"
+                      name="SalesDate" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[StartDate]"
+                      dataType="dbDate"
+                      name="StartDate" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[EndDate]"
+                      dataType="dbDate"
+                      name="EndDate" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Discount]"
+                      dataType="i4"
+                      name="Discount" />
+                    <externalMetadataColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Price]"
+                      dataType="cy"
+                      name="Price" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                  synchronousInputId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+              description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+              name="Уточняющий запрос DimAirFlight"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimAirFlight]</property>
+                <property
+                  dataType="System.String"
+                  description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimAirFlight]) [refTable]
+where [refTable].[CityDeparture] = ? and [refTable].[CityArival] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает тип кэша таблицы уточняющих запросов."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="AviaId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Departure" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CityDeparture" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Arrival" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CityArival" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Baggage" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FlightNumber" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                  name="ParameterMap">#{Package\Задача потока данных\Источник "OLE DB".Outputs[Выход источника "OLE DB"].Columns[CityDeparture]};#{Package\Задача потока данных\Источник "OLE DB".Outputs[Выход источника "OLE DB"].Columns[CityArival]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                  name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[CityDeparture]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="CityDeparture"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CityDeparture]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                          name="JoinToReferenceColumn">CityDeparture</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[CityArival]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="CityArival"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[CityArival]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                          name="JoinToReferenceColumn">CityArival</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                  errorOrTruncationOperation="Уточняющий запрос"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[AviaId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Копировать столбец"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[AviaId]"
+                      name="AviaId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn">AviaId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                  description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                  exclusionGroup="1"
+                  name="Выход несовпадающих строк уточняющего запроса"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Задача потока данных\Уточняющий запрос DimClients"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+              description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+              name="Уточняющий запрос DimClients"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimClients]</property>
+                <property
+                  dataType="System.String"
+                  description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimClients]) [refTable]
+where [refTable].[Passport] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает тип кэша таблицы уточняющих запросов."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ClientId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FirstName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TypeClient" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Passport" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PhoneNumber" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1251"/&gt;&lt;referenceColumn name="Adress" dataType="DT_WSTR" length="150" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Birthdate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                  name="ParameterMap">#{Package\Задача потока данных\Источник "OLE DB".Outputs[Выход источника "OLE DB"].Columns[C_Passport]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Задача потока данных\Уточняющий запрос DimClients.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Задача потока данных\Уточняющий запрос DimClients.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                  name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimClients.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[C_Passport]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="C_Passport"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[C_Passport]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                          name="JoinToReferenceColumn">Passport</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                  errorOrTruncationOperation="Уточняющий запрос"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimClients.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[ClientId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Копировать столбец"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[ClientId]"
+                      name="ClientId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn">ClientId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                  description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                  exclusionGroup="1"
+                  name="Выход несовпадающих строк уточняющего запроса"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimClients.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimClients.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Задача потока данных\Уточняющий запрос DimHotel"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+              description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+              name="Уточняющий запрос DimHotel"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimHotels]</property>
+                <property
+                  dataType="System.String"
+                  description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimHotels]) [refTable]
+where [refTable].[HotelName] = ? and [refTable].[Country] = ? and [refTable].[City] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает тип кэша таблицы уточняющих запросов."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="HotelId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="HotelName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="HotelType" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Country" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="City" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Adress" dataType="DT_WSTR" length="150" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LocationType" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RoomType" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FoodType" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Price" dataType="DT_CY" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                  name="ParameterMap">#{Package\Задача потока данных\Источник "OLE DB".Outputs[Выход источника "OLE DB"].Columns[HotelName]};#{Package\Задача потока данных\Источник "OLE DB".Outputs[Выход источника "OLE DB"].Columns[Country]};#{Package\Задача потока данных\Источник "OLE DB".Outputs[Выход источника "OLE DB"].Columns[City]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                  name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[HotelName]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="HotelName"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[HotelName]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                          name="JoinToReferenceColumn">HotelName</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[Country]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="Country"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[Country]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                          name="JoinToReferenceColumn">Country</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[City]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="City"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[City]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                          name="JoinToReferenceColumn">City</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                  errorOrTruncationOperation="Уточняющий запрос"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimHotel.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[HotelId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Копировать столбец"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[HotelId]"
+                      name="HotelId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn">HotelId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                  description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                  exclusionGroup="1"
+                  name="Выход несовпадающих строк уточняющего запроса"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimHotel.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimHotel.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Задача потока данных\Уточняющий запрос DimManagers"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Уточняющий запрос;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;6"
+              description="Присоединяет дополнительные столбцы к потоку данных путем поиска значений в таблице. Пример: соединение со столбцом &quot;employee id&quot; таблицы employees позволяет получить значения &quot;hire date&quot; и &quot;employee name&quot;. Рекомендуется воспользоваться этим преобразованием, если таблица подстановки не помещается в памяти."
+              name="Уточняющий запрос DimManagers"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Задает инструкцию SQL, которая формирует таблицу уточняющих запросов."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimManagers]</property>
+                <property
+                  dataType="System.String"
+                  description="Задает инструкцию SQL, которая использует параметры для формирования таблицы уточняющих запросов."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimManagers]) [refTable]
+where [refTable].[Passport] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает тип соединения, используемого для доступа к эталонному набору данных."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает тип кэша таблицы уточняющих запросов."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает, как преобразование &quot;Уточняющий запрос&quot; обрабатывает строки без совпадающих элементов в эталонном наборе данных."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает долю кэша (в процентах), выделенную для строк без совпадающих элементов в эталонном наборе данных."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Максимальный объем памяти для кэша ссылок на 32-разрядной платформе."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Максимальный объем памяти для кэша ссылок на 64-разрядной платформе."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает, следует ли ссылаться на метаданные в формате XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="ManagerId" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FirstName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LastName" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Position" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Passport" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PhoneNumber" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1251"/&gt;&lt;referenceColumn name="Email" dataType="DT_WSTR" length="25" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Territory" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Задает список идентификаторов журнала обращений и преобразований, сопоставляемый с параметрами, которые использует инструкция SQL в свойстве SQLCommand. Элементы списка разделяются точками с запятой."
+                  name="ParameterMap">#{Package\Задача потока данных\Источник "OLE DB".Outputs[Выход источника "OLE DB"].Columns[M_Passport]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Определяет, должны ли повторяющиеся ключи в ссылочных данных обрабатываться как ошибки при использовании режима полного кэширования."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  connectionManagerRefId="Package.ConnectionManagers[DESKTOP-4OVPEN8\SQLEXPRESS.TravelAgency]"
+                  description="Диспетчер соединений, используемый для доступа к данным уточняющих запросов."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+                  name="Ввод преобразования &quot;Уточняющий запрос&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;].Columns[M_Passport]"
+                      cachedDataType="wstr"
+                      cachedLength="25"
+                      cachedName="M_Passport"
+                      lineageId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;].Columns[M_Passport]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, который соединен с данным столбцом."
+                          name="JoinToReferenceColumn">Passport</property>
+                        <property
+                          dataType="System.Null"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+                  errorOrTruncationOperation="Уточняющий запрос"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimManagers.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[ManagerId]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Копировать столбец"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;].Columns[ManagerId]"
+                      name="ManagerId"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Указывает в ссылочной таблице столбец, из которого копируется данный столбец."
+                          name="CopyFromReferenceColumn">ManagerId</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Выход несовпадающих строк уточняющего запроса]"
+                  description="Вывод преобразования &quot;Уточняющий запрос&quot;, которое обрабатывает строки без совпадающих элементов в эталонном наборе данных. Используйте этот выход, если свойство NoMatchBehavior имеет значение &quot;Отправить строки без совпадающих элементов в выход несовпадающих строк&quot;."
+                  exclusionGroup="1"
+                  name="Выход несовпадающих строк уточняющего запроса"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimManagers.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок преобразования &quot;Уточняющий запрос&quot;"
+                  synchronousInputId="Package\Задача потока данных\Уточняющий запрос DimManagers.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод ошибок преобразования &quot;Уточняющий запрос&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Задача потока данных.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+              endId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+              name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+              startId="Package\Задача потока данных\Уточняющий запрос DimHotel.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+            <path
+              refId="Package\Задача потока данных.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;1]"
+              endId="Package\Задача потока данных\Назначение &quot;OLE DB&quot;.Inputs[Вход назначения &quot;OLE DB&quot;]"
+              name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+              startId="Package\Задача потока данных\Уточняющий запрос DimAirFlight.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+            <path
+              refId="Package\Задача потока данных.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;2]"
+              endId="Package\Задача потока данных\Уточняющий запрос DimManagers.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+              name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+              startId="Package\Задача потока данных\Уточняющий запрос DimClients.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+            <path
+              refId="Package\Задача потока данных.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;3]"
+              endId="Package\Задача потока данных\Уточняющий запрос DimHotel.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+              name="Вывод совпадений преобразования &quot;Уточняющий запрос&quot;"
+              startId="Package\Задача потока данных\Уточняющий запрос DimManagers.Outputs[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]" />
+            <path
+              refId="Package\Задача потока данных.Paths[Выход источника &quot;OLE DB&quot;]"
+              endId="Package\Задача потока данных\Уточняющий запрос DimClients.Inputs[Ввод преобразования &quot;Уточняющий запрос&quot;]"
+              name="Выход источника &quot;OLE DB&quot;"
+              startId="Package\Задача потока данных\Источник &quot;OLE DB&quot;.Outputs[Выход источника &quot;OLE DB&quot;]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--В данном разделе CDATA содержатся сведения о макете пакета. В данном разделе содержатся сведения о координатах (x,y), ширине и высоте.-->
+<!--В случае возникновения ошибки при редактировании этого раздела вручную его можно удалить. -->
+<!--Пакет можно загрузить обычным образом, но прежние сведения о макете будут утеряны, и конструктор автоматически перераспределит элементы в области конструктора.-->
+<Objects
+  Version="8">
+  <!--Все приведенные ниже узлы будут содержать свойства, не влияющие на поведение среды выполнения.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="188.8,41.6"
+          Id="Package\Задача потока данных"
+          TopLeft="134.857145153746,51.3882360148182" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Задача потока данных">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\Задача потока данных\Источник &quot;OLE DB&quot;"
+          TopLeft="2.33766237747251,7.78609636588153" />
+        <NodeLayout
+          Size="224,41.6"
+          Id="Package\Задача потока данных\Уточняющий запрос DimHotel"
+          TopLeft="223.896107709032,142.930483287968" />
+        <NodeLayout
+          Size="238.4,41.6"
+          Id="Package\Задача потока данных\Уточняющий запрос DimAirFlight"
+          TopLeft="219.740263482414,210.780751619222" />
+        <EdgeLayout
+          Id="Package\Задача потока данных.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;]"
+          TopLeft="337.418185595723,184.530483287968">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,26.2502683312535"
+              Start="0,0"
+              End="0,18.7502683312535">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.7502683312535" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-162.54673828125,3.37513416562675,325.0934765625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184,41.6"
+          Id="Package\Задача потока данных\Назначение &quot;OLE DB&quot;"
+          TopLeft="510.961047365405,214.84492225863" />
+        <EdgeLayout
+          Id="Package\Задача потока данных.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;1]"
+          TopLeft="458.140263482414,233.612836938926">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="52.8207838829907,0"
+              Start="0,0"
+              End="45.3207838829907,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="45.3207838829907,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-139.886346339755,5,325.0934765625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="231.2,41.6"
+          Id="Package\Задача потока данных\Уточняющий запрос DimClients"
+          TopLeft="228.571432463977,2.78074870210056" />
+        <EdgeLayout
+          Id="Package\Задача потока данных.Paths[Выход источника &quot;OLE DB&quot;]"
+          TopLeft="174.337662377472,26.083422533991">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="54.2337700865044,0"
+              Start="0,0"
+              End="46.7337700865044,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="46.7337700865044,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0.798291293252198,5,45.1371875,11.4287109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="244.8,41.6"
+          Id="Package\Задача потока данных\Уточняющий запрос DimManagers"
+          TopLeft="218.181821897433,72.2994662546144" />
+        <EdgeLayout
+          Id="Package\Задача потока данных.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;2]"
+          TopLeft="342.376627180705,44.3807487021006">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.9187175525139"
+              Start="0,0"
+              End="0,20.4187175525139">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.4187175525139" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-162.54673828125,4.20935877625693,325.0934765625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Задача потока данных.Paths[Вывод совпадений преобразования &quot;Уточняющий запрос&quot;3]"
+          TopLeft="338.238964803232,113.899466254614">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,29.031017033354"
+              Start="0,0"
+              End="0,21.531017033354">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.531017033354" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-162.54673828125,4.765508516677,325.0934765625,12"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Задача потока данных\Источник &quot;OLE DB&quot;">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Задача потока данных\Уточняющий запрос DimHotel">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimHotels]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Задача потока данных\Уточняющий запрос DimAirFlight">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimAirFlight]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Задача потока данных\Назначение &quot;OLE DB&quot;">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Задача потока данных\Уточняющий запрос DimClients">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimClients]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Задача потока данных\Уточняющий запрос DimManagers">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DimManagers]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
